@@ -14,9 +14,12 @@
 <h1>This is a Heading e5799fe6d69575dde12268e5e571c8fa</h1>
 <p>This is a paragraph.</p>
 
-<% if(data !== null){ %>
-    <h4>A forecast for <%=data.city.name%>, <%=data.city.country%>:</h4>
-    <div>
+<input type ="text" placeholder="type lat" id="inputlat">
+
+<input type ="text" placeholder="type lon" id="inputlon">
+<button type="button" onclick="getLatValue();">send location</button>
+
+<div id="weatherdata" style="display: none;" class="answer_list">
         <table>
             <thead>
                 <tr>
@@ -32,27 +35,24 @@
                 </tr>
             </thead>
             <tbody>
-                <% for (var i = 0; i < data.cnt; i++) {%>
                     <tr>
                         <td id="date"><%=data.list[i].dt_txt%></td>
                         <td id="temperature"><%=data.list[i].main.temp%>&#176</td>
                         <td id="humidity"><%=data.list[i].main.humidity%>%</td>
                         <td id="pressure"><%=data.list[i].main.pressure%> atm</td>
                         <td id="clouds"><%=data.list[i].clouds.all%> %</td>
-                        <td id="wind"><%=data.list[i].wind.speed%> m/s</td>
-                        <td><%=data.list[i].wind.deg%>&#176</td>
+                        <td id="winds"><%=data.list[i].wind.speed%> m/s</td>
+                        <td id="windd"><%=data.list[i].wind.deg%>&#176</td>
                         <td id="location"><%=data.list[i].weather[0].main%></td>
                         <td id="description"><%=data.list[i].weather[0].description%></td>
                     </tr>
-                <% } %>
+
             </tbody>
         </table>
-    </div>
-<% } %>
+</div>
 
-<h1 id="temperature"></h1>
-    <h2 id="description"></h2>
-    <p id="location"></p>
+
+<button type="button" onclick="hide();">hide info</button>
 </body>
 <script src="script.js"></script>
 </html>

@@ -1,41 +1,17 @@
-// var unirest = require('unirest');
-// var express = require('express');
-// var app = express();
-// app.get('/', function(req, res){
-//     unirest.get("https://community-open-weather-map.p.rapidapi.com/weather")
-//       .header("X-RapidAPI-Key", "98dc0f0402msh27da9f9ed7c338bp144148jsn25fd970a5e46")
-//       .header("x-rapidapi-host", "community-open-weather-map.p.rapidapi.com")
-//       .query({
-//           'lon': '12.4924',
-//           'lat': '41.8902',
-//           'units': 'metric',
-//           'mode': 'html'
-//       })
-//       .end(function (result) {
-//           res.writeHead(200, {"Content-Type": "text/html"});
-//           res.write(result.body);
-//           console.log('Colosseum, I am coming!');
-//       });
-//     })
-//     app.listen(8081, function(){
-//       console.log('Server running at https://127.0.0.1:8081/');
-//     })
-
-// var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://weatherbit-v1-mashape.p.rapidapi.com/forecast/3hourly?lang=en",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "weatherbit-v1-mashape.p.rapidapi.com",
-// 		"x-rapidapi-key": "98dc0f0402msh27da9f9ed7c338bp144148jsn25fd970a5e46"
-// 	}
-// }
-
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// });
-function getWeather() {
+  function getLatValue(){
+      var inputVallat = document.getElementById("inputlat").value;
+      var inputVallon = document.getElementById("inputlon").value;
+      alert(inputVallat);
+      showDiv();
+      getWeather(inputVallon,inputVallat);
+  }
+  function showDiv() {
+    document.getElementById('weatherdata').style.display = "block";
+ }
+ function hide(){
+  document.getElementById('weatherdata').style.display = "none";
+ }
+  function getWeather(lon,lat) {
     let temperature = document.getElementById("temperature");
     let description = document.getElementById("description");
     let location = document.getElementById("location");
@@ -43,6 +19,10 @@ function getWeather() {
     let humidity = document.getElementById("humidity");
     let pressure = document.getElementById("pressure");
     let clouds = document.getElementById("clouds");
+    let winds = document.getElementById("winds");
+    let windd = document.getElementById("windd");
+
+
 
     let api = "https://api.openweathermap.org/data/2.5/weather";
     let apiKey = "e5799fe6d69575dde12268e5e571c8fa";
@@ -52,8 +32,11 @@ function getWeather() {
     navigator.geolocation.getCurrentPosition(success, error);
   
     function success(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
+      latitude=lat;
+      longitude=lon;
+      // latitude = position.coords.latitude;
+      //latitude=getLatValue();
+      // longitude = position.coords.longitude;
   
       let url =
         api +
@@ -82,7 +65,11 @@ function getWeather() {
           let pres = data.main.pressure;
           pressure.innerHTML= pres+ "hPa";
           let clou = data.clouds.all;
-          clouds.innerHTML= clou+ "hPa";
+          clouds.innerHTML= clou+ "%";
+          let windsp = data.wind.speed;
+          winds.innerHTML= windsp+ "km/h";
+          let winddeg = data.wind.deg-273.15;
+          windd.innerHTML= winddeg+ "°C";
           location.innerHTML =
             data.name + " (" + latitude + "°, " + longitude + "°)";
           description.innerHTML = data.weather[0].main;
@@ -93,5 +80,6 @@ function getWeather() {
       location.innerHTML = "Unable to retrieve your location";
     }
   }
+
+  // getWeather();
   
-  getWeather();
