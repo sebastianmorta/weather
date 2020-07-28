@@ -27,22 +27,22 @@
                     <th>Clouds</th>
                     <th>Wind speed</th>
                     <th>Wind degree</th>
-                    <th>Weather</th>
+                    <th>Location</th>
                     <th>Description</th>
                 </tr>
             </thead>
             <tbody>
                 <% for (var i = 0; i < data.cnt; i++) {%>
                     <tr>
-                        <td><%=data.list[i].dt_txt%></td>
-                        <td><%=data.list[i].main.temp%>&#176</td>
-                        <td><%=data.list[i].main.humidity%>%</td>
-                        <td><%=data.list[i].main.pressure%> atm</td>
-                        <td><%=data.list[i].clouds.all%> %</td>
-                        <td><%=data.list[i].wind.speed%> m/s</td>
+                        <td id="date"><%=data.list[i].dt_txt%></td>
+                        <td id="temperature"><%=data.list[i].main.temp%>&#176</td>
+                        <td id="humidity"><%=data.list[i].main.humidity%>%</td>
+                        <td id="pressure"><%=data.list[i].main.pressure%> atm</td>
+                        <td id="clouds"><%=data.list[i].clouds.all%> %</td>
+                        <td id="wind"><%=data.list[i].wind.speed%> m/s</td>
                         <td><%=data.list[i].wind.deg%>&#176</td>
-                        <td><%=data.list[i].weather[0].main%></td>
-                        <td><%=data.list[i].weather[0].description%></td>
+                        <td id="location"><%=data.list[i].weather[0].main%></td>
+                        <td id="description"><%=data.list[i].weather[0].description%></td>
                     </tr>
                 <% } %>
             </tbody>

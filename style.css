@@ -1,10 +1,8 @@
 html,
-body
-{
+body{
     background-image: url("images/tlo.png");
     margin: 0px;
     height: 100%
-    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 
